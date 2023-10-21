@@ -106,7 +106,6 @@ def parse_arguments():
     train.add_argument(
         "--use_tensorboard",
         default=False,
-        metavar="\b",
         help="Use a Tensorboard to Show Progress of Training",
         action="store_true",
     )
