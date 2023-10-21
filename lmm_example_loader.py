@@ -61,7 +61,10 @@ def parse_arguments():
         epilog="Summary/notes/etc.",
     )
 
-    preprocess = parser.add_argument_group("Preprocessing Options")
+    preprocess = parser.add_argument_group(
+        "Preprocessing Options",
+        "Details on the Preprocessor, what to expect, etc.",
+    )
 
     preprocess.add_argument(
         "-p",
@@ -87,7 +90,10 @@ def parse_arguments():
         help="Preprocessor Output Directory",
     )
 
-    train = parser.add_argument_group("Training Options")
+    train = parser.add_argument_group(
+        "Training Options",
+        "Details on the Training Options, what to expect, etc.",
+    )
 
     train.add_argument(
         "-t",
@@ -97,7 +103,18 @@ def parse_arguments():
         action="store_true",
     )
 
-    evaluate = parser.add_argument_group("Evaluation Options")
+    train.add_argument(
+        "--use_tensorboard",
+        default=False,
+        metavar="\b",
+        help="Use a Tensorboard to Show Progress of Training",
+        action="store_true",
+    )
+
+    evaluate = parser.add_argument_group(
+        "Evaluation Options",
+        "Details on the Evaluation Options, what to expect, etc.",
+    )
     evaluate.add_argument(
         "-e",
         "--evaluate",
@@ -106,7 +123,26 @@ def parse_arguments():
         action="store_true",
     )
 
-    generate = parser.add_argument_group("Generation Options")
+    evaluate.add_argument(
+        "--batch_size",
+        default=128,
+        metavar="\b",
+        help="Batch Size for Evaluation Neural Network",
+        type=int,
+    )
+
+    evaluate.add_argument(
+        "--num_workers",
+        default=16,
+        metavar="\b",
+        help="Number of Workers for Evaluation Neural Network",
+        type=int,
+    )
+
+    generate = parser.add_argument_group(
+        "Generation Options",
+        "Details on the Generation Options, what to expect, etc.",
+    )
     generate.add_argument(
         "-g",
         "--generate",
@@ -116,7 +152,7 @@ def parse_arguments():
     )
 
     arguments = parser.parse_args()
-    log.info("Preprocess Data       - %s" % arguments.preprocess)
+    log.info("Preprocess            - %s" % arguments.preprocess)
     log.info("Preprocess Input Dir  - %s" % arguments.preprocess_input_directory)
     log.info("Preprocess Output Dir - %s" % arguments.preprocess_output_dir)
     log.info("Train                 - %s" % arguments.train)
