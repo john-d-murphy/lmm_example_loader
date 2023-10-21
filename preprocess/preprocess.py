@@ -6,7 +6,6 @@ class Preprocessor:
 
     def __init__(self, arguments):
         self.arguments = arguments
-        print(TRAIN)
 
     def run(self):
         self.make_output_directories(self.arguments)
@@ -19,5 +18,5 @@ class Preprocessor:
     def read_metadata_file(self, arguments):
         pass
 
-    def encode_and_pickle_data(self, arguments)
+    def encode_and_pickle_data(self, arguments):
         pass
